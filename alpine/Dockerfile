@@ -6,7 +6,8 @@ RUN apk add --no-cache \
   tar \
   wget \
   xz \
-  fontconfig
+  fontconfig \
+  make
 COPY ./texlive.profile ./
 RUN wget -nv https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 RUN tar -xzf ./install-tl-unx.tar.gz --strip-components=1
@@ -25,6 +26,7 @@ COPY --from=installer /usr/local/texlive /usr/local/texlive
 RUN apk add --no-cache \
   bash \
   perl \
-  wget
+  wget \
+  make
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 CMD ["bash"]
